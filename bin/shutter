@@ -103,7 +103,7 @@ binmode STDOUT, ":utf8";
 #define constants
 #--------------------------------------
 use constant MAX_ERROR       => 5;
-use constant SHUTTER_REV     => 'Rev.1279';
+use constant SHUTTER_REV     => 'Rev.1280';
 use constant SHUTTER_NAME    => 'Shutter';
 use constant SHUTTER_VERSION => '0.93.1';
 #--------------------------------------
@@ -6968,7 +6968,8 @@ else {
             );
         }
         else {
-            push( @files_to_email, $session_screens{$key}->{'uri'}->to_string );
+            # Patch correcting xdg-email by Keith Edmunds <kae@midnighthax.com> from https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=819149
+            push( @files_to_email, "$session_screens{$key}->{'folder'}"."/"."$session_screens{$key}->{'short'}" );
         }
 
         my $mail_string = undef;
